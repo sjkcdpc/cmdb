@@ -4,6 +4,7 @@ import (
 	"github.com/sirupsen/logrus"
 	//"github.com/mds1455975151/cmdb/utils/log"
 	"github.com/mds1455975151/cmdb/settings"
+	"github.com/mds1455975151/cmdb/storage"
 	"github.com/gin-gonic/gin"
 	"os"
 	"github.com/mds1455975151/cmdb/server/hosts"
@@ -24,6 +25,7 @@ func Run()  {
 	logrus.Info(logo)
 
 	//log.InitLogger()
+	storage.Initialize()
 
 	var setting = settings.Get("cmdb")
 	var listen = setting.GetString("gin.listen")

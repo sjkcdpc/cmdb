@@ -9,6 +9,7 @@ import (
 	"github.com/jinzhu/gorm"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func Initialize() {

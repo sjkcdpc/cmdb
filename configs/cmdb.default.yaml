@@ -1,11 +1,11 @@
 ---
 mysql:
-  host: localhost
+  host: 10.1.16.151
   port: 3306
-  user: root
+  user: dba
   password: '123456'
-  database: cmdb_go
-  create_database_if_not_exist: false
+  database: cmdb
+  create_database_if_not_exist: true
 redis:
   host: localhost
   port: 6379
