@@ -67,5 +67,5 @@ func Run()  {
 		"path":    basePath,
 	}).Info("Start cmdb service.")
 
-	router.Run()
+	router.Run(listen)
 }

@@ -4,10 +4,10 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-type AccountState int
+type HostsItem int
 
 const (
-	Active AccountState = iota
+	Active HostsItem = iota
 	InActive
 	Banned
 	BanDied

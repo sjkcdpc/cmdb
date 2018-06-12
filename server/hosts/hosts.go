@@ -22,6 +22,6 @@ func Start(group *gin.RouterGroup) {
 	}
 
 	for key, value := range handlerFuncList {
-		group.POST(key, value)
+		group.GET(key, value)
 	}
 }
