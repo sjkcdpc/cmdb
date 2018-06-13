@@ -15,7 +15,7 @@ import (
 func Initialize() {
 
 	dbCmdb = InitMySql(settings.Get("cmdb"))
-	InitAuthDatabase()
+	InitCmdbDatabase()
 }
 
 func InitMySql(setting *viper.Viper) *gorm.DB {

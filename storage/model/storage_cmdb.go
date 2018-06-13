@@ -2,29 +2,78 @@ package model
 
 import (
 	"github.com/jinzhu/gorm"
+	"time"
 )
 
 type HostsItem int
 
 const (
-	Active HostsItem = iota
+	Active   HostsItem = iota
 	InActive
 	Banned
 	BanDied
 )
 
+// 主机表
 type Hosts struct {
 	gorm.Model
-	GlobalId       int64        `json:"GlobalId" gorm:"index"`
-	WanIp          string       `json:"WanIp"`
-	LanIp          string       `json:"LanIp"`
-	Conf      	   string       `json:"Conf"`
-	HostName       string       `json:"HostName"`
-	Os             string       `json:"Os"`
-	User1          string       `json:"User1"`
-	User2          string       `json:"User2"`
-	SshPort        int64        `json:"SshPort"`
-	Tags           string       `json:"Tags"`
-	Remark         string       `json:"Remark"`
+	GlobalId int64  `json:"GlobalId" gorm:"index"`
+	WanIp    string `json:"WanIp"`
+	LanIp    string `json:"LanIp"`
+	Conf     string `json:"Conf"`
+	HostName string `json:"HostName"`
+	Os       string `json:"Os"`
+	Contact  string `json:"Contact"` // 业务线负责人
+	Manager  string `json:"Manager"` // 系统负责人
+	SshPort  int64  `json:"SshPort"`
+	Tags     string `json:"Tags"`
+	Remark   string `json:"Remark"`
 }
 
+// 用户表
+type Users struct {
+	gorm.Model
+	Username   string    `json:"Username"`
+	Password   string    `json:"Password"`
+	Birthday   time.Time `json:"Birthday"`
+	Email      string    `json:"Email"`
+	Phone      int64     `json:"Phone"`
+	Department string    `json:"Department"`
+	Enable     bool      `json:"Enable"`
+	Tags       string    `json:"Tags"`
+	Remark     string    `json:"Remark"`
+}
+
+// 日志表
+type Logs struct {
+	gorm.Model
+	Content string `json:"Content"`
+}
+
+// DNS信息表
+type Dnsinfo struct {
+	gorm.Model
+	Name string `json:"Name"`
+}
+
+// 负载均衡表
+type Lbinfo struct {
+	gorm.Model
+	Name string `json:"Name"`
+}
+
+// 业务线信息表
+type Businessinfo struct {
+	gorm.Model
+	Name    string `json:"Name"`
+	Manager string `json:"Manager"` //业务线负责人
+}
+
+// 默认表名是Users， 修改默认表名方法如下
+func (Users) TableName() string {
+	return "users"
+}
+
+func (Hosts) TableName() string {
+	return "hosts"
+}

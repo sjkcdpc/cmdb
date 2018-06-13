@@ -7,7 +7,7 @@ import (
 	"github.com/mds1455975151/cmdb/storage"
 	"github.com/gin-gonic/gin"
 	"os"
-	"github.com/mds1455975151/cmdb/server/hosts"
+	"github.com/mds1455975151/cmdb/server/cmdb"
 )
 
 var logo = `
@@ -51,7 +51,7 @@ func Run()  {
 
 	v1 := router.Group(basePath)
 	{
-		hosts.Start(v1.Group("/hosts"))
+		cmdb.Start(v1.Group("/cmdb"))
 	}
 
 	router.GET("/ping", func(c *gin.Context) {

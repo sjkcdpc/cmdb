@@ -8,7 +8,7 @@ import (
 	"io/ioutil"
 	"bytes"
 	"fmt"
-	"github.com/xykong/loveauth/errors"
+	"github.com/mds1455975151/cmdb/errors"
 )
 
 func NotImplemented(c *gin.Context) {
@@ -35,8 +35,8 @@ type loggerEntryWithFields interface {
 
 // Ginrus returns a gin.HandlerFunc (middleware) that logs requests using logrus.
 //
-// Requests with errors are logged using logrus.Error().
-// Requests without errors are logged using logrus.Info().
+// Requests with error are logged using logrus.Error().
+// Requests without error are logged using logrus.Info().
 //
 // It receives:
 //   1. A time package format string (e.g. time.RFC3339).

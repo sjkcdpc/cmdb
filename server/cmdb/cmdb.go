@@ -1,18 +1,15 @@
-package hosts
+package cmdb
 
 import (
-	//"net/http"
-	//"fmt"
-
 	"github.com/gin-gonic/gin"
-	//"github.com/sirupsen/logrus"
 	"github.com/sirupsen/logrus"
 )
 type hosts struct {
 	id     string `form:"id" json:"id" binding:"required"`
 }
 
-var handlerFuncList = make(map[string]gin.HandlerFunc)
+var handlers = make(map[string]gin.HandlerFunc)
+var getHandlers = make(map[string]gin.HandlerFunc)
 
 func Start(group *gin.RouterGroup) {
 
@@ -20,8 +17,11 @@ func Start(group *gin.RouterGroup) {
 		logrus.Error("admin start failed.")
 		return
 	}
+	for key, value := range handlers {
+		group.POST(key, value)
+	}
 
-	for key, value := range handlerFuncList {
+	for key, value := range getHandlers {
 		group.GET(key, value)
 	}
 }
