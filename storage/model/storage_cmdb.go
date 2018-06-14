@@ -2,7 +2,6 @@ package model
 
 import (
 	"github.com/jinzhu/gorm"
-	"time"
 )
 
 type HostsItem int
@@ -17,15 +16,14 @@ const (
 // 主机表
 type Hosts struct {
 	gorm.Model
-	GlobalId int64  `json:"GlobalId" gorm:"index"`
-	WanIp    string `json:"WanIp"`
-	LanIp    string `json:"LanIp"`
+	Wanip    string `json:"WanIp" grom:"not null;unique"`
+	Lanip    string `json:"LanIp"`
 	Conf     string `json:"Conf"`
-	HostName string `json:"HostName"`
-	Os       string `json:"Os"`
+	Hostname string `json:"HostName"`
+	Os       string `json:"Os" grom:"unique"`
 	Contact  string `json:"Contact"` // 业务线负责人
 	Manager  string `json:"Manager"` // 系统负责人
-	SshPort  int64  `json:"SshPort"`
+	Sshport  int64  `json:"SshPort"`
 	Tags     string `json:"Tags"`
 	Remark   string `json:"Remark"`
 }
@@ -35,7 +33,7 @@ type Users struct {
 	gorm.Model
 	Username   string    `json:"Username"`
 	Password   string    `json:"Password"`
-	Birthday   time.Time `json:"Birthday"`
+	Birthday   string `json:"Birthday"`
 	Email      string    `json:"Email"`
 	Phone      int64     `json:"Phone"`
 	Department string    `json:"Department"`
