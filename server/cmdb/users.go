@@ -3,11 +3,11 @@ package cmdb
 import (
 	"net/http"
 
+	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/mds1455975151/cmdb/errors"
 	"github.com/mds1455975151/cmdb/storage"
 	"github.com/mds1455975151/cmdb/utils"
-	"github.com/mds1455975151/cmdb/errors"
-	"fmt"
 )
 
 func init() {
@@ -16,7 +16,7 @@ func init() {
 
 // Binding from JSON
 type RequestQueryUsersData struct {
-	Id      string `form:"id" json:"id" binding:"required"`
+	Id         string `form:"id" json:"id" binding:"required"`
 	Expiration bool   `form:"expiration" json:"expiration"`
 }
 

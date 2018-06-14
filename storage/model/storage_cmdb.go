@@ -8,7 +8,7 @@ import (
 type HostsItem int
 
 const (
-	Active   HostsItem = iota
+	Active HostsItem = iota
 	InActive
 	Banned
 	BanDied

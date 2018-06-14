@@ -1,24 +1,24 @@
 package settings
 
 import (
-	"github.com/spf13/viper"
 	"github.com/sirupsen/logrus"
+	"github.com/spf13/viper"
 	"os"
 	"time"
 )
 
 var settings map[string]*viper.Viper
 
-func Initialize()  {
+func Initialize() {
 	// initalize cmdb config
-	cmdb :=viper.New()
+	cmdb := viper.New()
 	cmdb.SetConfigFile("cmdb")
-	cmdb.AddConfigPath("configs/")			// 可能的配置文件路径
-	cmdb.AddConfigPath("/etc/cmdb/")		// 可能的配置文件路径
+	cmdb.AddConfigPath("configs/")   // 可能的配置文件路径
+	cmdb.AddConfigPath("/etc/cmdb/") // 可能的配置文件路径
 	cmdb.AddConfigPath("$HOME/.cmdb/")
 	cmdb.AddConfigPath(".")
 	err := cmdb.ReadInConfig()
-	if err !=nil {
+	if err != nil {
 		logrus.Errorf("Config file load failed: %s\n", err)
 	}
 
@@ -43,8 +43,8 @@ func Get(name string) *viper.Viper {
 	setting.AddConfigPath("./../configs/")       // path to look for the config file in
 	setting.AddConfigPath("./../../configs/")    // path to look for the config file in
 	setting.AddConfigPath("./../../../configs/") // path to look for the config file in
-	setting.AddConfigPath("/etc/cmdb/")      // path to look for the config file in
-	setting.AddConfigPath("$HOME/.cmdb")     // call multiple times to add many search paths
+	setting.AddConfigPath("/etc/cmdb/")          // path to look for the config file in
+	setting.AddConfigPath("$HOME/.cmdb")         // call multiple times to add many search paths
 	setting.AddConfigPath(".")                   // optionally look for config in the working directory
 
 	errDefault := setting.ReadInConfig() // Find and read the config file
@@ -58,7 +58,7 @@ func Get(name string) *viper.Viper {
 			"name":       name,
 			"errDefault": errDefault,
 			"errCurrent": errCurrent,
-		}).Warn("Config file load failed.", )
+		}).Warn("Config file load failed.")
 	}
 
 	settings[name] = setting

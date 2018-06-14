@@ -1,10 +1,9 @@
 package log
 
 import (
-	"github.com/sirupsen/logrus"
-	"github.com/mds1455975151/cmdb/settings"
 	"github.com/heirko/go-contrib/logrusHelper"
-
+	"github.com/mds1455975151/cmdb/settings"
+	"github.com/sirupsen/logrus"
 )
 
 func InitLogger() {
@@ -26,4 +25,3 @@ func InitLogger() {
 	//	"aaa": 1,
 	//}, "aaa", nil)
 }
-

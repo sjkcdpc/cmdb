@@ -3,11 +3,11 @@ package server
 import (
 	"github.com/sirupsen/logrus"
 	//"github.com/mds1455975151/cmdb/utils/log"
+	"github.com/gin-gonic/gin"
+	"github.com/mds1455975151/cmdb/server/cmdb"
 	"github.com/mds1455975151/cmdb/settings"
 	"github.com/mds1455975151/cmdb/storage"
-	"github.com/gin-gonic/gin"
 	"os"
-	"github.com/mds1455975151/cmdb/server/cmdb"
 )
 
 var logo = `
@@ -21,7 +21,7 @@ var logo = `
 		Contact: mds1455975151<1455975151@qq.com>
 `
 
-func Run()  {
+func Run() {
 	logrus.Info(logo)
 
 	//log.InitLogger()

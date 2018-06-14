@@ -1,19 +1,19 @@
 package cmd
 
 import (
-	"github.com/spf13/cobra"
 	"github.com/mds1455975151/cmdb/server"
+	"github.com/spf13/cobra"
 )
 
 var startCmd = &cobra.Command{
-	Use: "start",
+	Use:   "start",
 	Short: "start cmdb server",
-	Long: "不想写了",
+	Long:  "不想写了",
 	Run: func(cmd *cobra.Command, args []string) {
 		server.Run()
 	},
 }
 
-func init()  {
+func init() {
 	rootCmd.AddCommand(startCmd)
 }

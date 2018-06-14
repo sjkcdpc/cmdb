@@ -1,14 +1,14 @@
 package utils
 
 import (
-	"github.com/gin-gonic/gin"
-	"net/http"
-	"github.com/sirupsen/logrus"
-	"time"
-	"io/ioutil"
 	"bytes"
 	"fmt"
+	"github.com/gin-gonic/gin"
 	"github.com/mds1455975151/cmdb/errors"
+	"github.com/sirupsen/logrus"
+	"io/ioutil"
+	"net/http"
+	"time"
 )
 
 func NotImplemented(c *gin.Context) {
@@ -116,7 +116,7 @@ func QuickReplyError(c *gin.Context, err error) {
 	}
 }
 
-func QuickReply(c *gin.Context, code errors.Code, message string, args ... interface{}) {
+func QuickReply(c *gin.Context, code errors.Code, message string, args ...interface{}) {
 
 	resp := CommonResponse{}
 	resp.Body.Code = int64(code)

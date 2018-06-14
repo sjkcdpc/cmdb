@@ -1,15 +1,15 @@
 package storage
 
 import (
+	"database/sql"
 	"fmt"
 	"strings"
-	"database/sql"
 
-	"github.com/mds1455975151/cmdb/settings"
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
+	"github.com/mds1455975151/cmdb/settings"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
-	_ "github.com/go-sql-driver/mysql"
 )
 
 func Initialize() {

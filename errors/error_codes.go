@@ -3,7 +3,7 @@ package errors
 import "fmt"
 
 const (
-	Ok     Code = iota
+	Ok Code = iota
 	Failed
 	Faileda
 

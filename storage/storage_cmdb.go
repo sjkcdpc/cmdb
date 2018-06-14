@@ -1,11 +1,11 @@
 package storage
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/jinzhu/gorm"
 	"github.com/mds1455975151/cmdb/storage/model"
 	"github.com/sirupsen/logrus"
-	"fmt"
-	"encoding/json"
 )
 
 var dbCmdb *gorm.DB
@@ -48,13 +48,12 @@ func QueryHost(id int64) *model.Hosts {
 
 func QueryHostAll() interface{} {
 
-	var n [] string
+	var n []string
 	datas := make([]*model.Hosts, 0)
 
-
-	if err := dbCmdb.Find(&datas).Error; err !=nil{
+	if err := dbCmdb.Find(&datas).Error; err != nil {
 		logrus.WithFields(logrus.Fields{
-			"error":    err.Error(),
+			"error": err.Error(),
 		}).Error("QueryHostAll data not found.")
 	}
 
@@ -67,8 +66,8 @@ func QueryHostAll() interface{} {
 }
 
 // 获取表数据行数
-func QueryHostsCount() int{
-	var count int=0
+func QueryHostsCount() int {
+	var count int = 0
 
 	dbCmdb.Table("hosts").Count(&count)
 	return count
@@ -77,33 +76,33 @@ func QueryHostsCount() int{
 func InsertTestData() *model.Hosts {
 
 	//初始化数据
-	host1 := model.Hosts{GlobalId:1,
-							WanIp:"1.1.1.1",
-							LanIp:"10.0.0.1",
-							Conf:"4core+8G+50G+500G",
-							HostName:"test1",
-							Os:"CentOS 6",
-							Manager:"dongsheng.ma",
-							SshPort:22,
-							Tags:"nginx",
-							Remark:"测试数据"}
-	host2 := model.Hosts{GlobalId:2,
-						WanIp:"2.2.2.2",
-						LanIp:"10.0.0.2",
-						Conf:"4core+8G+50G+500G",
-						HostName:"test2",
-						Os:"CentOS 7",
-						Manager:"dongsheng.ma",
-						SshPort:22,
-						Tags:"iis",
-						Remark:"测试数据"}
+	host1 := model.Hosts{GlobalId: 1,
+		WanIp:    "1.1.1.1",
+		LanIp:    "10.0.0.1",
+		Conf:     "4core+8G+50G+500G",
+		HostName: "test1",
+		Os:       "CentOS 6",
+		Manager:  "dongsheng.ma",
+		SshPort:  22,
+		Tags:     "nginx",
+		Remark:   "测试数据"}
+	host2 := model.Hosts{GlobalId: 2,
+		WanIp:    "2.2.2.2",
+		LanIp:    "10.0.0.2",
+		Conf:     "4core+8G+50G+500G",
+		HostName: "test2",
+		Os:       "CentOS 7",
+		Manager:  "dongsheng.ma",
+		SshPort:  22,
+		Tags:     "iis",
+		Remark:   "测试数据"}
 	dbCmdb.Create(&host1)
 	dbCmdb.Create(&host2)
 	fmt.Println("insert test data")
 
 	if err := dbCmdb.Create(&host1).Error; err != nil {
 		logrus.WithFields(logrus.Fields{
-			"error":    err.Error(),
+			"error": err.Error(),
 		}).Error("Insert Test data not ok.")
 
 		return nil
