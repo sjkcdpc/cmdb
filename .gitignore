@@ -18,7 +18,6 @@ loveauth
 logs/*.log*
 .DS_Store
 
-.air.windows.conf
 *.log
 *.bak
 *.bat
@@ -31,4 +30,3 @@ tsconfig.json
 templates/~$*
 ._.DS_Store
 _obj/
-!libtss_sdk.so
