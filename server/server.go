@@ -2,7 +2,7 @@ package server
 
 import (
 	"github.com/sirupsen/logrus"
-	//"github.com/mds1455975151/cmdb/utils/log"
+	"github.com/mds1455975151/cmdb/utils/log"
 	"github.com/gin-gonic/gin"
 	"github.com/mds1455975151/cmdb/server/cmdb"
 	"github.com/mds1455975151/cmdb/settings"
@@ -24,7 +24,7 @@ var logo = `
 func Run() {
 	logrus.Info(logo)
 
-	//log.InitLogger()
+	log.InitLogger()
 	storage.Initialize()
 
 	var setting = settings.Get("cmdb")

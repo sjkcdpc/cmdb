@@ -3,8 +3,10 @@
 	"ignore": "test",
 	"package": [
 		{
-			"path": "appengine/cloudsql",
-			"revision": ""
+			"checksumSHA1": "GmIsNLLNviTyjMSO8t/Paqma084=",
+			"path": "github.com/Sirupsen/logrus",
+			"revision": "e4b0c6d7829bcf64435536c4a88f4088a3c76203",
+			"revisionTime": "2018-08-13T15:35:01Z"
 		},
 		{
 			"checksumSHA1": "7NP1qUMF8Kx1y0zANxx0e+oq9Oo=",
@@ -41,6 +43,18 @@
 			"path": "github.com/gin-gonic/gin/render",
 			"revision": "64a45486421c37bd60af66ce96a3ef7b62a191aa",
 			"revisionTime": "2018-08-15T05:42:12Z"
+		},
+		{
+			"checksumSHA1": "MOx56+IsEj2NlbUH8C1MsESxU/A=",
+			"path": "github.com/go-akka/configuration",
+			"revision": "6065b2d05c3b6fe74694a73c9673806a970679e0",
+			"revisionTime": "2018-04-18T11:07:49Z"
+		},
+		{
+			"checksumSHA1": "0RZRUC/4/KYQja5NmnVOCsMeMdw=",
+			"path": "github.com/go-akka/configuration/hocon",
+			"revision": "6065b2d05c3b6fe74694a73c9673806a970679e0",
+			"revisionTime": "2018-04-18T11:07:49Z"
 		},
 		{
 			"checksumSHA1": "k9izYoyobR8Upb3Yjsw9htgE/Mk=",
@@ -115,6 +129,24 @@
 			"revisionTime": "2018-04-04T17:41:02Z"
 		},
 		{
+			"checksumSHA1": "1/jHcExrusaGk2qeUB+QsBvQjKM=",
+			"path": "github.com/heirko/go-contrib",
+			"revision": "82c95aa7d665584a236fb3aa7f985c60b3e6ad7f",
+			"revisionTime": "2017-09-21T17:44:45Z"
+		},
+		{
+			"checksumSHA1": "tb0CFcCZhd6H1U88dOYe9dFg3nk=",
+			"path": "github.com/heirko/go-contrib/logrusHelper",
+			"revision": "82c95aa7d665584a236fb3aa7f985c60b3e6ad7f",
+			"revisionTime": "2017-09-21T17:44:45Z"
+		},
+		{
+			"checksumSHA1": "b/HFTdwgY3FW/bpqMyAZBdvtdQM=",
+			"path": "github.com/heralight/logrus_mate",
+			"revision": "918767a1df84db3645d67261714491f26a57f730",
+			"revisionTime": "2017-05-04T14:48:53Z"
+		},
+		{
 			"checksumSHA1": "40vJyUB4ezQSn/NSadsKEOrudMc=",
 			"path": "github.com/inconshreveable/mousetrap",
 			"revision": "76626ae9c91c4f2a10f34cad8ce83ea42c93bb75",
@@ -173,6 +205,12 @@
 			"path": "github.com/modern-go/reflect2",
 			"revision": "94122c33edd36123c84d5368cfb2b69df93a0ec8",
 			"revisionTime": "2018-07-18T01:23:57Z"
+		},
+		{
+			"checksumSHA1": "K8QsnZLV9n7jHaNr9jySy1P96LY=",
+			"path": "github.com/orcaman/concurrent-map",
+			"revision": "b28018939af9022337862b94a463abb18abb3e0e",
+			"revisionTime": "2018-07-23T18:39:37Z"
 		},
 		{
 			"checksumSHA1": "amsJse38+uT7Z7UkvtMzVefgZOM=",
