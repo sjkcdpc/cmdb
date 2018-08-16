@@ -42,3 +42,20 @@ build:
 	golint .
 	go vet
 	go build
+
+version :
+	./scripts/version.sh VERSION ./cmd/version.go ./server/server.go README.md
+
+test :
+	go test `go list ./... | grep -v /vendor/`
+
+clean :
+	-rm cmdb
+
+doc : doc-only
+	$(SWAGGER) serve ./docs/swagger.json -p 8888
+
+publish : release
+	git commit -a -m "publish version `cat VERSION`."
+#	git push
+	echo "publish version `cat VERSION` success."
