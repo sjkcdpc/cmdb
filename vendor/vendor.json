@@ -145,6 +145,12 @@
 			"revisionTime": "2017-05-04T14:48:53Z"
 		},
 		{
+			"checksumSHA1": "40vJyUB4ezQSn/NSadsKEOrudMc=",
+			"path": "github.com/inconshreveable/mousetrap",
+			"revision": "76626ae9c91c4f2a10f34cad8ce83ea42c93bb75",
+			"revisionTime": "2014-10-17T20:07:13Z"
+		},
+		{
 			"checksumSHA1": "nlEiwqdbwY1eclAGG1xcC+XPV9M=",
 			"path": "github.com/jinzhu/gorm",
 			"revision": "82eb9f8a5bbb5e6b929d2f0ae5b934e6a253f94e",
@@ -173,6 +179,12 @@
 			"path": "github.com/mattn/go-isatty",
 			"revision": "6ca4dbf54d38eea1a992b3c722a76a5d1c4cb25c",
 			"revisionTime": "2017-11-07T05:05:31Z"
+		},
+		{
+			"checksumSHA1": "Li0PaRmaVBdibS/zs8myzc07L6o=",
+			"path": "github.com/mitchellh/go-homedir",
+			"revision": "58046073cbffe2f25d425fe1331102f55cf719de",
+			"revisionTime": "2018-08-01T23:32:06Z"
 		},
 		{
 			"checksumSHA1": "ewGq4nGalpCQOHcmBTdAEQx1wW0=",
@@ -227,6 +239,12 @@
 			"path": "github.com/spf13/cast",
 			"revision": "8965335b8c7107321228e3e3702cab9832751bac",
 			"revisionTime": "2018-02-14T17:35:30Z"
+		},
+		{
+			"checksumSHA1": "Tg05rfWxVqlqtB8G6QDHGo5wjAQ=",
+			"path": "github.com/spf13/cobra",
+			"revision": "7c4570c3ebeb8129a1f7456d0908a8b676b6f9f1",
+			"revisionTime": "2018-07-22T21:56:44Z"
 		},
 		{
 			"checksumSHA1": "+JFKK0z5Eutk29rUz1lEhLxHMfk=",
