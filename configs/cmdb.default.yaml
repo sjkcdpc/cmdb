@@ -1,9 +1,9 @@
 ---
 mysql:
-  host: 10.1.16.151
+  host: localhost
   port: 3306
-  user: dba
-  password: '123456'
+  user: root
+  password: ''
   database: cmdb
   create_database_if_not_exist: true
 redis:
@@ -13,5 +13,5 @@ redis:
   password: ''
   database: 0
 gin:
-  mode: debug       // mode选项： release|debug
+  mode: debug       // mode type： release or debug
   listen: ":8130"
