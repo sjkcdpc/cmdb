@@ -1,7 +1,7 @@
 package logrus_mate
 
 import (
-	"github.com/Sirupsen/logrus"
+	"github.com/sirupsen/logrus"
 )
 
 type NullFormatter struct {
@@ -11,7 +11,7 @@ func init() {
 	RegisterFormatter("null", NewNullFormatter)
 }
 
-func NewNullFormatter(config Configuration) (formatter logrus.Formatter, err error) {
+func NewNullFormatter(options Options) (formatter logrus.Formatter, err error) {
 	formatter = &NullFormatter{}
 	return
 }

@@ -48,7 +48,6 @@ func Open(dialect string, args ...interface{}) (db *DB, err error) {
 	}
 	var source string
 	var dbSQL SQLCommon
-	var ownDbSQL bool
 
 	switch value := args[0].(type) {
 	case string:
@@ -60,12 +59,8 @@ func Open(dialect string, args ...interface{}) (db *DB, err error) {
 			source = args[1].(string)
 		}
 		dbSQL, err = sql.Open(driver, source)
-		ownDbSQL = true
 	case SQLCommon:
 		dbSQL = value
-		ownDbSQL = false
-	default:
-		return nil, fmt.Errorf("invalid database source: %v is not a valid type", value)
 	}
 
 	db = &DB{
@@ -81,7 +76,7 @@ func Open(dialect string, args ...interface{}) (db *DB, err error) {
 	}
 	// Send a ping to make sure the database connection is alive.
 	if d, ok := dbSQL.(*sql.DB); ok {
-		if err = d.Ping(); err != nil && ownDbSQL {
+		if err = d.Ping(); err != nil {
 			d.Close()
 		}
 	}
@@ -122,7 +117,7 @@ func (s *DB) CommonDB() SQLCommon {
 
 // Dialect get dialect
 func (s *DB) Dialect() Dialect {
-	return s.dialect
+	return s.parent.dialect
 }
 
 // Callback return `Callbacks` container, you could add/change/delete callbacks with it
@@ -487,8 +482,6 @@ func (s *DB) Begin() *DB {
 	if db, ok := c.db.(sqlDb); ok && db != nil {
 		tx, err := db.Begin()
 		c.db = interface{}(tx).(SQLCommon)
-
-		c.dialect.SetDB(c.db)
 		c.AddError(err)
 	} else {
 		c.AddError(ErrCantStartTransaction)
@@ -498,8 +491,7 @@ func (s *DB) Begin() *DB {
 
 // Commit commit a transaction
 func (s *DB) Commit() *DB {
-	var emptySQLTx *sql.Tx
-	if db, ok := s.db.(sqlTx); ok && db != nil && db != emptySQLTx {
+	if db, ok := s.db.(sqlTx); ok && db != nil {
 		s.AddError(db.Commit())
 	} else {
 		s.AddError(ErrInvalidTransaction)
@@ -509,8 +501,7 @@ func (s *DB) Commit() *DB {
 
 // Rollback rollback a transaction
 func (s *DB) Rollback() *DB {
-	var emptySQLTx *sql.Tx
-	if db, ok := s.db.(sqlTx); ok && db != nil && db != emptySQLTx {
+	if db, ok := s.db.(sqlTx); ok && db != nil {
 		s.AddError(db.Rollback())
 	} else {
 		s.AddError(ErrInvalidTransaction)
@@ -753,7 +744,6 @@ func (s *DB) clone() *DB {
 		Value:             s.Value,
 		Error:             s.Error,
 		blockGlobalUpdate: s.blockGlobalUpdate,
-		dialect:           newDialect(s.dialect.GetName(), s.db),
 	}
 
 	for key, value := range s.values {

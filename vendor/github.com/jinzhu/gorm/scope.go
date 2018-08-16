@@ -63,7 +63,7 @@ func (scope *Scope) SQLDB() SQLCommon {
 
 // Dialect get dialect
 func (scope *Scope) Dialect() Dialect {
-	return scope.db.dialect
+	return scope.db.parent.dialect
 }
 
 // Quote used to quote string to escape them for database
@@ -692,12 +692,12 @@ func (scope *Scope) buildSelectQuery(clause map[string]interface{}) (str string)
 
 	buff := bytes.NewBuffer([]byte{})
 	i := 0
-	for pos, char := range str {
+	for pos := range str {
 		if str[pos] == '?' {
 			buff.WriteString(replacements[i])
 			i++
 		} else {
-			buff.WriteRune(char)
+			buff.WriteByte(str[pos])
 		}
 	}
 
@@ -1215,18 +1215,12 @@ func (scope *Scope) addForeignKey(field string, dest string, onDelete string, on
 }
 
 func (scope *Scope) removeForeignKey(field string, dest string) {
-	keyName := scope.Dialect().BuildKeyName(scope.TableName(), field, dest, "foreign")
+	keyName := scope.Dialect().BuildKeyName(scope.TableName(), field, dest)
+
 	if !scope.Dialect().HasForeignKey(scope.TableName(), keyName) {
 		return
 	}
-	var mysql mysql
-	var query string
-	if scope.Dialect().GetName() == mysql.GetName() {
-		query = `ALTER TABLE %s DROP FOREIGN KEY %s;`
-	} else {
-		query = `ALTER TABLE %s DROP CONSTRAINT %s;`
-	}
-
+	var query = `ALTER TABLE %s DROP CONSTRAINT %s;`
 	scope.Raw(fmt.Sprintf(query, scope.QuotedTableName(), scope.quoteIfPossible(keyName))).Exec()
 }
 

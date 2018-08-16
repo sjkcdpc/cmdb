@@ -1,0 +1,8 @@
+language: go
+
+go:
+  - 1.8
+  - tip
+
+before_install:
+  - mkdir -p $GOPATH/bin

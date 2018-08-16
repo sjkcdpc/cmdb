@@ -1,0 +1,21 @@
+language: go
+
+go:
+  - 1.x
+  - master
+  
+sudo: false
+
+install:
+  - go build -v ./...
+
+script:
+  - go get -u github.com/golang/lint/golint
+  - go vet ./...
+  - golint ./...
+  - GORACE="halt_on_error=1" go test -v -race ./...
+
+notifications:
+  email:
+    on_success: change
+    on_failure: always

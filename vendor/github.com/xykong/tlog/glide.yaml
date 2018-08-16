@@ -1,0 +1,4 @@
+package: github.com/xykong/tlog
+import:
+- package: github.com/sirupsen/logrus
+  version: ^1.0.4

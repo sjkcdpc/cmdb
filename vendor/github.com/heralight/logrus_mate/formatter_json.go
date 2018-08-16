@@ -1,7 +1,7 @@
 package logrus_mate
 
 import (
-	"github.com/Sirupsen/logrus"
+	"github.com/sirupsen/logrus"
 )
 
 type JSONFormatterConfig struct {
@@ -12,11 +12,13 @@ func init() {
 	RegisterFormatter("json", NewJSONFormatter)
 }
 
-func NewJSONFormatter(config Configuration) (formatter logrus.Formatter, err error) {
-	var format string
-	if config != nil {
-		format = config.GetString("timestamp_format")
+func NewJSONFormatter(options Options) (formatter logrus.Formatter, err error) {
+	conf := JSONFormatterConfig{}
+
+	if err = options.ToObject(&conf); err != nil {
+		return
 	}
-	formatter = &logrus.JSONFormatter{TimestampFormat: format}
+
+	formatter = &logrus.JSONFormatter{TimestampFormat: conf.TimestampFormat}
 	return
 }

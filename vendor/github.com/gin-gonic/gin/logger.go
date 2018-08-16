@@ -7,7 +7,6 @@ package gin
 import (
 	"fmt"
 	"io"
-	"net/http"
 	"os"
 	"time"
 
@@ -26,17 +25,14 @@ var (
 	disableColor = false
 )
 
-// DisableConsoleColor disables color output in the console.
 func DisableConsoleColor() {
 	disableColor = true
 }
 
-// ErrorLogger returns a handlerfunc for any error type.
 func ErrorLogger() HandlerFunc {
 	return ErrorLoggerT(ErrorTypeAny)
 }
 
-// ErrorLoggerT returns a handlerfunc for a given error type.
 func ErrorLoggerT(typ ErrorType) HandlerFunc {
 	return func(c *Context) {
 		c.Next()
@@ -47,8 +43,8 @@ func ErrorLoggerT(typ ErrorType) HandlerFunc {
 	}
 }
 
-// Logger instances a Logger middleware that will write the logs to gin.DefaultWriter.
-// By default gin.DefaultWriter = os.Stdout.
+// Logger instances a Logger middleware that will write the logs to gin.DefaultWriter
+// By default gin.DefaultWriter = os.Stdout
 func Logger() HandlerFunc {
 	return LoggerWithWriter(DefaultWriter)
 }
@@ -78,7 +74,6 @@ func LoggerWithWriter(out io.Writer, notlogged ...string) HandlerFunc {
 		// Start timer
 		start := time.Now()
 		path := c.Request.URL.Path
-		raw := c.Request.URL.RawQuery
 
 		// Process request
 		c.Next()
@@ -92,24 +87,19 @@ func LoggerWithWriter(out io.Writer, notlogged ...string) HandlerFunc {
 			clientIP := c.ClientIP()
 			method := c.Request.Method
 			statusCode := c.Writer.Status()
-			var statusColor, methodColor, resetColor string
+			var statusColor, methodColor string
 			if isTerm {
 				statusColor = colorForStatus(statusCode)
 				methodColor = colorForMethod(method)
-				resetColor = reset
 			}
 			comment := c.Errors.ByType(ErrorTypePrivate).String()
 
-			if raw != "" {
-				path = path + "?" + raw
-			}
-
-			fmt.Fprintf(out, "[GIN] %v |%s %3d %s| %13v | %15s |%s %-7s %s %s\n%s",
+			fmt.Fprintf(out, "[GIN] %v |%s %3d %s| %13v | %15s |%s  %s %-7s %s\n%s",
 				end.Format("2006/01/02 - 15:04:05"),
-				statusColor, statusCode, resetColor,
+				statusColor, statusCode, reset,
 				latency,
 				clientIP,
-				methodColor, method, resetColor,
+				methodColor, method, reset,
 				path,
 				comment,
 			)
@@ -119,11 +109,11 @@ func LoggerWithWriter(out io.Writer, notlogged ...string) HandlerFunc {
 
 func colorForStatus(code int) string {
 	switch {
-	case code >= http.StatusOK && code < http.StatusMultipleChoices:
+	case code >= 200 && code < 300:
 		return green
-	case code >= http.StatusMultipleChoices && code < http.StatusBadRequest:
+	case code >= 300 && code < 400:
 		return white
-	case code >= http.StatusBadRequest && code < http.StatusInternalServerError:
+	case code >= 400 && code < 500:
 		return yellow
 	default:
 		return red
