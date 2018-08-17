@@ -8,6 +8,7 @@ import (
 	"github.com/mds1455975151/cmdb/storage"
 	//"github.com/sirupsen/logrus"
 	"github.com/mds1455975151/cmdb/storage/model"
+	"fmt"
 )
 
 func init() {
@@ -19,10 +20,12 @@ func hostsinfo(c *gin.Context) {
 	id := c.Query("id")
 	if id == "" {
 		Info := storage.QueryHostsAll()
+		fmt.Println(Info)
 		c.JSON(http.StatusOK, Info)
 	} else {
 		i, _ := strconv.ParseInt(id, 10, 64)
 		Info := storage.QueryHost(i)
+		fmt.Println(Info)
 		c.JSON(http.StatusOK, Info)
 	}
 }
